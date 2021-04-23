@@ -1,5 +1,5 @@
 Drivers/MPU6050/Src/mpu6050.o: ../Drivers/MPU6050/Src/mpu6050.c \
- D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h \
+ D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h \
  ../Core/Inc/main.h ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -29,7 +29,7 @@ Drivers/MPU6050/Src/mpu6050.o: ../Drivers/MPU6050/Src/mpu6050.c \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h
 
-D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h:
+D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h:
 
 ../Core/Inc/main.h:
 

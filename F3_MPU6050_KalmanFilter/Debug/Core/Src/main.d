@@ -27,8 +27,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h \
- D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Outils/CWrapper_KalmanFilter/Inc/CWrapper_KalmanFilter.h
+ D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h \
+ D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Outils/CWrapper_KalmanFilter/Inc/CWrapper_KalmanFilter.h
 
 ../Core/Inc/main.h:
 
@@ -88,6 +88,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 
-D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h:
+D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Drivers/MPU6050/Inc/mpu6050.h:
 
-D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Outils/CWrapper_KalmanFilter/Inc/CWrapper_KalmanFilter.h:
+D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Outils/CWrapper_KalmanFilter/Inc/CWrapper_KalmanFilter.h:

@@ -59,6 +59,7 @@ static void MX_USART1_UART_Init(void);
 
 float Ax, Ay, Az;
 float Gx, Gy, Gz;
+float PITCH_Acc, ROLL_Acc, YAW_Acc;
 float PITCH, ROLL, YAW;
 /* USER CODE END PFP */
 
@@ -119,7 +120,7 @@ int main(void)
 
 	  //MPU6050_GET_ACC (&Ax, &Ay, &Az);
       MPU6050_GET_GYRO (&Gx, &Gy, &Gz);
-      _get_acc_angle(&PITCH, &ROLL);
+      _get_acc_angle(&PITCH_Acc, &ROLL_Acc);
 
       //kalAngleX = kalmanROLL.getAngle(ROLL, gyroXrate, dt);
 

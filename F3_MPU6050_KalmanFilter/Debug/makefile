@@ -79,8 +79,8 @@ all: main-build
 main-build: F3_MPU6050_KalmanFilter.elf secondary-outputs
 
 # Tool invocations
-F3_MPU6050_KalmanFilter.elf: $(OBJS) $(USER_OBJS) D:\master_projetct\MPU6050_KalmanFilter\F3_MPU6050_KalmanFilter\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "F3_MPU6050_KalmanFilter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\master_projetct\MPU6050_KalmanFilter\F3_MPU6050_KalmanFilter\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F3_MPU6050_KalmanFilter.map" -Wl,--gc-sections -static -Wl,--start-group -l:libarm_cortexM4lf_math.a -Wl,--end-group -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+F3_MPU6050_KalmanFilter.elf: $(OBJS) $(USER_OBJS) D:\GIT_Master\MPU6050_KalmanFilter\F3_MPU6050_KalmanFilter\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "F3_MPU6050_KalmanFilter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\GIT_Master\MPU6050_KalmanFilter\F3_MPU6050_KalmanFilter\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F3_MPU6050_KalmanFilter.map" -Wl,--gc-sections -static -Wl,--start-group -l:libarm_cortexM4lf_math.a -Wl,--end-group -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
