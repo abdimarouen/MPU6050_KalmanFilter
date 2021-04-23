@@ -8,24 +8,23 @@
 #include "kalmanFilter.h"
 #include "math.h"
 
-KalmanFilter::KalmanFilter(void)
-{
-	float pkRoll[5] = {0, 0.5, 0, 0, 0.01};
-	float pk1MinusRoll[5] = {0, 0.5, 0, 0, 0.01};
-	float pk1Roll[5] = {0, 0.5, 0, 0, 0.01};
-	float deltaT = 0.004;
-	float xkRoll[3] = {0, 0, 0};
-	float xk1MinusRoll[3] = {0, 0, 0};
-	float xk1Roll[3] = {0, 0, 0};
-	float K[3] = {0, 0, 0};
-	float phi[5] = {0, 1, deltaT, 0, 1};
-	float psi[3] = {0, deltaT, 0};
-	float I[5] = {0, 1, 0, 0, 1};
-	float R = 0.01;
-	float Q[5] = {0, 0.0002*0.0002, 0, 0, 0.0001*0.0001};
-	float H[3] = {0, 1, 0};
-	float S, ukRoll, zkRoll, nuRoll;
-}
+KalmanFilter::KalmanFilter(void):
+	pkRoll {0, 0.5, 0, 0, 0.01},
+	pk1MinusRoll {0, 0.5, 0, 0, 0.01},
+	pk1Roll {0, 0.5, 0, 0, 0.01},
+	deltaT {0.004},
+	xkRoll {0, 0, 0},
+	xk1MinusRoll {0, 0, 0},
+	xk1Roll {0, 0, 0},
+	K {0, 0, 0},
+	phi {0, 1, deltaT, 0, 1},
+	psi {0, deltaT, 0},
+	I {0, 1, 0, 0, 1},
+	R {0.01},
+	Q {0, 0.0002*0.0002, 0, 0, 0.0001*0.0001},
+	H {0, 1, 0}
+{}
+
 /* KalmanFilter::getAngle:
  * Angle_Acc : Accelerometer Angle to estimate
  * Gyro_Vel  : Correspondent Gyroscope Velocity

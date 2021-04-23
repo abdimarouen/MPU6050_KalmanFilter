@@ -1,6 +1,6 @@
 cmath:425:3:constexpr float std::sin(float)	16	static
-kalmanFilter.cpp:11:1:KalmanFilter::KalmanFilter()	224	static
-kalmanFilter.cpp:37:7:float KalmanFilter::getAngle(float, float, float, float, float)	40	static
-kalmanFilter.cpp:94:6:void KalmanFilter::set_Angle(float)	16	static
-kalmanFilter.cpp:99:6:void KalmanFilter::set(int)	16	static
-kalmanFilter.cpp:104:5:int KalmanFilter::get()	16	static
+kalmanFilter.cpp:11:1:KalmanFilter::KalmanFilter()	24	static
+kalmanFilter.cpp:36:7:float KalmanFilter::getAngle(float, float, float, float, float)	40	static
+kalmanFilter.cpp:93:6:void KalmanFilter::set_Angle(float)	16	static
+kalmanFilter.cpp:98:6:void KalmanFilter::set(int)	16	static
+kalmanFilter.cpp:103:5:int KalmanFilter::get()	16	static
