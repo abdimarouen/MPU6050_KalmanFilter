@@ -1,0 +1,9 @@
+mpu6050.c:27:5:MPU6050_Init	32	static
+mpu6050.c:78:6:MPU6050_GET_ACC	56	static
+mpu6050.c:93:6:MPU6050_GET_GYRO	56	static
+mpu6050.c:108:6:MPU6050_GET_NO_CAILB_ACC	56	static
+mpu6050.c:123:6:MPU6050_GET_NO_CAILB_GYRO	56	static
+mpu6050.c:138:6:MPU6050_ACC_CALIB	24	static
+mpu6050.c:201:6:MPU6050_GYRO_CALIB	24	static
+mpu6050.c:222:6:_get_acc_angle	32	static
+mpu6050.c:236:7:map	32	static
