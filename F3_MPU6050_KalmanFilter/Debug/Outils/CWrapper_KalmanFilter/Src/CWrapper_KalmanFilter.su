@@ -1,4 +1,6 @@
 CWrapper_KalmanFilter.cpp:12:16:KalmanFilter* newKalmanFilter()	16	static
-CWrapper_KalmanFilter.cpp:17:7:void KalmanFilter_set(KalmanFilter*, int)	16	static
-CWrapper_KalmanFilter.cpp:22:6:int KalmanFilter_get(KalmanFilter*)	16	static
-CWrapper_KalmanFilter.cpp:27:7:void deleteKalmanFilter(KalmanFilter*)	16	static
+CWrapper_KalmanFilter.cpp:17:8:float KalmanFilter_getAngle(KalmanFilter*, float, float, float, float, float)	32	static
+CWrapper_KalmanFilter.cpp:21:7:void KalmanFilter_set_Angle(KalmanFilter*, float)	16	static
+CWrapper_KalmanFilter.cpp:25:7:void KalmanFilter_set(KalmanFilter*, int)	16	static
+CWrapper_KalmanFilter.cpp:30:6:int KalmanFilter_get(KalmanFilter*)	16	static
+CWrapper_KalmanFilter.cpp:35:7:void deleteKalmanFilter(KalmanFilter*)	16	static

@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00020088  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00013156  00000000  00000000  000200b8  2**0
+ 12 .debug_info   000131fb  00000000  00000000  000200b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000029a9  00000000  00000000  0003320e  2**0
+ 13 .debug_abbrev 000029ba  00000000  00000000  000332b3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000ba8  00000000  00000000  00035bb8  2**3
+ 14 .debug_aranges 00000bb8  00000000  00000000  00035c70  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000ab0  00000000  00000000  00036760  2**3
+ 15 .debug_ranges 00000ac0  00000000  00000000  00036828  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00020b19  00000000  00000000  00037210  2**0
+ 16 .debug_macro  00020b19  00000000  00000000  000372e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000f21a  00000000  00000000  00057d29  2**0
+ 17 .debug_line   0000f248  00000000  00000000  00057e01  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000b3738  00000000  00000000  00066f43  2**0
+ 18 .debug_str    000b3752  00000000  00000000  00067049  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  0011a67b  2**0
+ 19 .comment      00000053  00000000  00000000  0011a79b  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003604  00000000  00000000  0011a6d0  2**2
+ 20 .debug_frame  0000364c  00000000  00000000  0011a7f0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -10704,7 +10704,10 @@ extern "C" {
  8004952:	bd98      	pop	{r3, r4, r7, pc}
 
 08004954 <KalmanFilter_set>:
-
+	void KalmanFilter_set_Angle(KalmanFilter *c, float Angle)
+	{
+		c->set_Angle(Angle);
+	}
 	void KalmanFilter_set(KalmanFilter *c, int i)
 	{
  8004954:	b580      	push	{r7, lr}

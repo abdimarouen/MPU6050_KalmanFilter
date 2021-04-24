@@ -29,7 +29,7 @@ private:
 	float S, ukRoll, zkRoll, nuRoll;
 public:
 	KalmanFilter();
-	float getAngle(float newAngle, float newRate, float Angle_Gyro_Correction, float Angle_Correction, float dt);
+	float getAngle(float Angle_Acc, float Gyro_Vel, float Angle_Gyro_Correction, float Angle_Correction, float dt);
 	void set_Angle(float Angle);
 	void set(int i);
 	int get();
