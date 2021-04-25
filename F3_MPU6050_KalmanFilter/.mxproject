@@ -9,18 +9,18 @@ CDefines=USE_HAL_DRIVER;STM32F303xC;USE_HAL_DRIVER;USE_HAL_DRIVER;
 [PreviousGenFiles]
 AdvancedFolderStructure=true
 HeaderFileListSize=3
-HeaderFiles#0=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/stm32f3xx_it.h
-HeaderFiles#1=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/stm32f3xx_hal_conf.h
-HeaderFiles#2=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/main.h
+HeaderFiles#0=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/stm32f3xx_it.h
+HeaderFiles#1=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/stm32f3xx_hal_conf.h
+HeaderFiles#2=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc/main.h
 HeaderFolderListSize=1
-HeaderPath#0=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc
+HeaderPath#0=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Inc
 HeaderFiles=;
 SourceFileListSize=3
-SourceFiles#0=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/stm32f3xx_it.c
-SourceFiles#1=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/stm32f3xx_hal_msp.c
-SourceFiles#2=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/main.c
+SourceFiles#0=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/stm32f3xx_it.c
+SourceFiles#1=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/stm32f3xx_hal_msp.c
+SourceFiles#2=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src/main.c
 SourceFolderListSize=1
-SourcePath#0=D:/master_projetct/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src
+SourcePath#0=D:/GIT_Master/MPU6050_KalmanFilter/F3_MPU6050_KalmanFilter/Core/Src
 SourceFiles=;
 
 [ThirdPartyIp]

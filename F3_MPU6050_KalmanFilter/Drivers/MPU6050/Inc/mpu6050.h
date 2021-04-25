@@ -29,10 +29,13 @@ extern "C" {
 
 
 /* Gyro Acc scale selector -----------------------------------------------*/
-#define _Gyro_scale_250
+#define _Gyro_scale_500
 #define _Acc_scale_2g
+
+
 #define _Calib_Gero 1000 // how many time will the gyro be eterate to get the offset
 #define _Acc_Calib_time_ms 5000 //define  how much time to switch between axes to calibrate them
+
 #define _Led_time_Calib_Blink_time_ms 500
 
 /* USER CODE BEGIN REGISTER DEFINITION */
@@ -61,8 +64,8 @@ extern "C" {
 #define _Reset_ 0x80			//reset MPU
 #define _GyroAcc_reset 0x7		//_GyroAcc_reset
 
-#define _Gyro_Scale 0x00		//0x00 250 -- 0x01 500-- 0x02 1000-- 0x03 2000 °/second
-#define _Acc_Scale 0x00			//0x00 2g -- 0x01 4g-- 0x02 8g-- 0x03 16g
+//#define _Gyro_Scale 0x00		//0x00 250 -- 0x01 500-- 0x02 1000-- 0x03 2000 °/second
+//#define _Acc_Scale 0x00			//0x00 2g -- 0x01 4g-- 0x02 8g-- 0x03 16g
 
 #define _Wake_up 0x00
 

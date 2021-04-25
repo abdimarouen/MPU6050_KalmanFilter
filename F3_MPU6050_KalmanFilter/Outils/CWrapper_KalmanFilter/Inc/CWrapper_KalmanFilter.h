@@ -16,7 +16,7 @@ typedef struct KalmanFilter KalmanFilter;
 
 KalmanFilter* newKalmanFilter();
 
-float KalmanFilter_getAngle(KalmanFilter *c, float Angle_Acc, float Gyro_Vel, float Angle_Gyro_Correction, float Angle_Correction, float dt);
+float KalmanFilter_getAngle(KalmanFilter *c, float Angle_Acc, float Gyro_Vel, float Angle_Correction, float Angle_Gyro_Correction, float dt);
 void KalmanFilter_set_Angle(KalmanFilter *c, float Angle);
 void KalmanFilter_set(KalmanFilter *c, int i);
 int KalmanFilter_get(KalmanFilter *c);

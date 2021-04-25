@@ -13,12 +13,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "mpu6050.h"
 
-float XplusCalib = -0.950927734f;
-float XminusCalib = 1.06518555f;
-float YplusCalib = -1.0012207f;
-float YminusCalib = 0.986572266f;
-float ZplusCalib = -1.19116211f;
-float ZminusCalib = 0.828125f;
+float XplusCalib = 1.06f;//1.05419922f;
+float XminusCalib = -0.95f;//-0.929199219f;
+float YplusCalib = 1.0f;//0.988769531f;
+float YminusCalib = -1.0f;//-1.00463867f;
+float ZplusCalib = 0.85f;//0.859863281f;
+float ZminusCalib = -1.19f;//-1.19921875f;
 
 float XGeroCalib = 0.f;
 float YGeroCalib = 0.f;
@@ -87,7 +87,7 @@ void MPU6050_GET_ACC (float* Ax, float* Ay, float* Az) //Get ACC Data
 
     *Ax = map(Accel_X_RAW / _Acc_scale_div, XminusCalib, XplusCalib, -0.98, 0.98);
     *Ay = map(Accel_Y_RAW / _Acc_scale_div, YminusCalib, YplusCalib, -0.98, 0.98);
-    *Az = map(Accel_Z_RAW / _Acc_scale_div, ZminusCalib, ZplusCalib, -0.98, 0.98);
+    *Az = map(Accel_Z_RAW / _Acc_scale_div, ZminusCalib, ZplusCalib, -0.98, 0.98);//-0.98, 0.98);
 }
 
 void MPU6050_GET_GYRO (float* Gx, float* Gy, float* Gz) //Get Gyro Data

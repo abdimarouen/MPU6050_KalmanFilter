@@ -20,15 +20,22 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "mpu6050.h"
 #include "CWrapper_KalmanFilter.h"
+#include <math.h>
+#include <stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+#define deg_to_rad  3.142f / 180.0f
+
+int delay_output = 50;
+int refresh_rate = 1000;//us
+uint32_t millis = 0.0;
+uint32_t prev_millis = 0.0;
 uint32_t Tick = 0.0;
 uint32_t cycles = 0;
 /* USER CODE END PTD */
@@ -43,7 +50,10 @@ uint32_t cycles = 0;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
 
+UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 int Led_State = 0;
@@ -58,14 +68,21 @@ static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 float Ax, Ay, Az;
-float Gx, Gy, Gz;
+float Gx, Gy, Gz;//x:pitch, y:roll
 float PITCH_Acc, ROLL_Acc, YAW_Acc;
 float PITCH, ROLL, YAW;
+float Angle_Gyro_Correction;
+int Acc_TiefPass = 2;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#ifdef __GNUC__
 
+  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 /* USER CODE END 0 */
 
 /**
@@ -77,7 +94,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -105,53 +121,46 @@ int main(void)
   while (MPU6050_Init() == 1){HAL_Delay(100); MX_I2C1_Init(); }; // mpu6050 init
   //MPU6050_ACC_CALIB();
   MPU6050_GYRO_CALIB();
-  /* USER CODE END 2 */
 
   struct KalmanFilter *kalmanPITCH = newKalmanFilter(); // Create the Kalman instances
-  KalmanFilter_set(kalmanPITCH, 2020);
-  deleteKalmanFilter(kalmanPITCH);
+  struct KalmanFilter *kalmanROLL = newKalmanFilter();
+
+  char result[20];
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+	  millis = HAL_GetTick();
+	  //MPU6050_GET_ACC (&Ax, &Ay, &Az);
+	  MPU6050_GET_GYRO (&Gx, &Gy, &Gz);
+	  _get_acc_angle(&PITCH_Acc, &ROLL_Acc);
+	  Tick = get_us();
 	  _init_get_us();
 
-	  //MPU6050_GET_ACC (&Ax, &Ay, &Az);
-      MPU6050_GET_GYRO (&Gx, &Gy, &Gz);
-      _get_acc_angle(&PITCH_Acc, &ROLL_Acc);
+	  PITCH = KalmanFilter_getAngle(kalmanPITCH, PITCH_Acc, Gx, ROLL, Gz, Tick * 1e-6) + ROLL * sin(Gz * Tick * 1e-6 * deg_to_rad);
+	  ROLL  = KalmanFilter_getAngle(kalmanROLL, ROLL_Acc, Gy, PITCH, Gz, Tick * 1e-6) - PITCH * sin(Gz * Tick * 1e-6 * deg_to_rad);
+	  //Angle_Gyro_Correction = PITCH;
+	  //Angle_Gyro_Correction += ROLL * sin(Gz * Tick * 1e-6 * deg_to_rad);
 
-      //kalAngleX = kalmanROLL.getAngle(ROLL, gyroXrate, dt);
 
 
-      Tick = get_us();
+	  snprintf(result, sizeof(result), "%.2f,%.2f\n", PITCH, ROLL);
+	  //size_output = sizeof(result);
 
-      HAL_GPIO_TogglePin(LD10_GPIO_Port, LD10_Pin);
-      //HAL_Delay(1);
+	  if(millis - prev_millis > delay_output){
+		  printf(result);
+		  prev_millis = millis;
+	  }
+//*/
+	  HAL_GPIO_TogglePin(LD10_GPIO_Port, LD10_Pin);
+	  //while(Tick + get_us() < refresh_rate);
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-}
-
-void _init_get_us(void)
-{
-	/* DWT struct is defined inside the core_cm4.h file */
-	DWT->CTRL |= 1 ; // enable the counter
-	DWT->CYCCNT = 0; // reset the counter
-}
-
-uint32_t get_us(void)
-{
-	return (uint32_t) DWT->CYCCNT/ (SystemCoreClock/1000000L);
-}
-
-void delayUS_DWT(uint32_t us) {
-	volatile uint32_t cycles = (SystemCoreClock/1000000L)*us;
-	volatile uint32_t start = DWT->CYCCNT;
-	do  {
-	} while(DWT->CYCCNT - start < cycles);
 }
 
 /**
@@ -217,7 +226,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x2000090E;
+  hi2c1.Init.Timing = 0x0000020B;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -336,13 +345,27 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//
 PUTCHAR_PROTOTYPE
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the uart4 and Loop until the end of transmission */
+
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+  //HAL_UART_Transmit_IT(&huart1, (uint8_t *)&ch, size_output);
 
   return ch;
+}
+//*/
+
+void _init_get_us(void)
+{
+	/* DWT struct is defined inside the core_cm4.h file */
+	DWT->CTRL |= 1 ; // enable the counter
+	DWT->CYCCNT = 0; // reset the counter
+}
+
+uint32_t get_us(void)
+{
+	return (uint32_t) DWT->CYCCNT/ (SystemCoreClock/1000000L);
 }
 /* USER CODE END 4 */
 

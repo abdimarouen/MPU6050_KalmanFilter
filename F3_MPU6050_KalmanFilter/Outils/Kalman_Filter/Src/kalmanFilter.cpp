@@ -8,32 +8,34 @@
 #include "kalmanFilter.h"
 #include "math.h"
 
+#define deg_to_rad  3.142f / 180.0f
+
 KalmanFilter::KalmanFilter(void):
-	pkRoll {0, 0.5, 0, 0, 0.01},
-	pk1MinusRoll {0, 0.5, 0, 0, 0.01},
-	pk1Roll {0, 0.5, 0, 0, 0.01},
-	deltaT {0.004},
+	pkRoll {0, 0.5, 0, 0, 0.01},//0
+	pk1MinusRoll {0, 0.5, 0, 0, 0.01},//error in angle^2 ; error in velocity^2 //default {0, 0.5, 0, 0, 0.01}
+	pk1Roll {0, 0.5, 0, 0, 0.01},//0
+	deltaT {0},
 	xkRoll {0, 0, 0},
 	xk1MinusRoll {0, 0, 0},
 	xk1Roll {0, 0, 0},
 	K {0, 0, 0},
-	phi {0, 1, deltaT, 0, 1},
-	psi {0, deltaT, 0},
-	I {0, 1, 0, 0, 1},
-	R {0.01},
-	Q {0, 0.0002*0.0002, 0, 0, 0.0001*0.0001},
-	H {0, 1, 0}
+	phi {0, 1, deltaT, 0, 1},//1
+	psi {0, deltaT, 0},//1
+	I {0, 1, 0, 0, 1},//1
+	R {0.001},//00
+	Q {0, 0.0002*0.0002, 0, 0, 0.0001*0.0001},//error in calculation of the process covarience matrix // default {0, 0.0002*0.0002, 0, 0, 0.0001*0.0001}
+	H {0, 1, 0}//1
 {}
 
 /* KalmanFilter::getAngle:
  * Angle_Acc : Accelerometer Angle to estimate
  * Gyro_Vel  : Correspondent Gyroscope Velocity
  * dt        : Integration Time Period
- * if we estimate Roll => Angle_Gyro_Correction = Gyro_Yaw_Angle && Angle_Correction = xkPitch[1]: estimated Pitch Angle ::oth init to 1 if not used
+ * if we estimate Roll => Angle_Gyro_Correction = Gyro_Yaw_Angle && Angle_Correction = xkPitch[1]: estimated Pitch Angle
  *
  */
 
-float KalmanFilter::getAngle(float Angle_Acc, float Gyro_Vel, float Angle_Gyro_Correction, float Angle_Correction, float dt)
+float KalmanFilter::getAngle(float Angle_Acc, float Gyro_Vel, float Angle_Correction, float Angle_Gyro_Correction, float dt)
 {
 	ukRoll = Gyro_Vel;//gyro_y / 131.0f;
 	zkRoll = Angle_Acc;
@@ -52,7 +54,8 @@ float KalmanFilter::getAngle(float Angle_Acc, float Gyro_Vel, float Angle_Gyro_C
 	pk1MinusRoll[4] = (phi[3] * pkRoll[1] + phi[4] * pkRoll[3]) * phi[3] + (phi[3] * pkRoll[2] + phi[4] * pkRoll[4]) * phi[4] + Q[4];//Q[3]
 
 	//correct Roll for Yaw movement
-	xk1MinusRoll[1] = xk1MinusRoll[1] + Angle_Correction * sin(Angle_Gyro_Correction);
+	//xk1MinusRoll[1] = xk1MinusRoll[1] + Angle_Correction * sin(Angle_Gyro_Correction* dt * deg_to_rad);
+	//Angle_Correction : roll-> Pitch angle estimated
 	//Angle_Gyro_Correction = gyro_z * 0.000001066f :: 0.000001066f = rad to deg conversion :: = 0.0000166 * (3.142 / 180) note : 0.0000166 = (1/250Hz)/65.5 ->> 250Hz integration time and 65.5 divider of gyro row data
 
 	//Step 2. Calculate Kalman gain

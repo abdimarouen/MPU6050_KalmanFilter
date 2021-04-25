@@ -16,7 +16,7 @@ extern "C" {
 
 	float KalmanFilter_getAngle(KalmanFilter *c, float Angle_Acc, float Gyro_Vel, float Angle_Gyro_Correction, float Angle_Correction, float dt)
 	{
-		return c->getAngle(Angle_Acc, Gyro_Vel, Angle_Gyro_Correction, Angle_Correction, dt);
+		return c->getAngle(Angle_Acc, Gyro_Vel, Angle_Correction, Angle_Gyro_Correction, dt);
 	}
 	void KalmanFilter_set_Angle(KalmanFilter *c, float Angle)
 	{
